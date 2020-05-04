@@ -42,7 +42,7 @@ const fireStations = [
 ];
 
 /* Function to find the closest firestation to the accident location */
-function findClosestStation(accidentLocation, fireStation) {
+function findClosestStation(accidentLocation, fireStation = fireStations) {
   let closestStation;
   let min = Infinity;
   fireStation.reduce((init, next) => {
