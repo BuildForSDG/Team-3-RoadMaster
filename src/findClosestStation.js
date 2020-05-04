@@ -2,10 +2,10 @@
 /* locs would be replaced by the coordinates sent to the server from the client */
 // const locs = { lat: 6.3445645, lng: 3.4533255 };
 /* firestations would be stored and pulled from the database, this is just a mock */
-// const { fireStations } = require('../fireStations.json');
+const { fireStations } = require('../fireStations.json');
 
 /* Function to find the closest firestation to the accident location */
-function findClosestStation(accidentLocation, fireStation) {
+function findClosestStation(accidentLocation, fireStation = fireStations) {
   let closestStation;
   let min = Infinity;
   fireStation.reduce((init, next) => {
