@@ -2,10 +2,47 @@
 /* locs would be replaced by the coordinates sent to the server from the client */
 // const locs = { lat: 6.3445645, lng: 3.4533255 };
 /* firestations would be stored and pulled from the database, this is just a mock */
-const { fireStations } = require('../fireStations.json');
+const fireStations = [
+  {
+    Lekki: {
+      lat: 6.4355376,
+      lng: 3.4829765
+    }
+  },
+  {
+    Ajah: {
+      lat: 6.4682876,
+      lng: 3.5719866
+    }
+  },
+  {
+    Ikeja: {
+      lat: 6.6004382,
+      lng: 3.3513756
+    }
+  },
+  {
+    Ikorodu: {
+      lat: 6.6144343,
+      lng: 3.5094988
+    }
+  },
+  {
+    Epe: {
+      lat: 6.5854286,
+      lng: 3.9566465
+    }
+  },
+  {
+    Sangotedo: {
+      lat: 6.4727703,
+      lng: 3.6309526
+    }
+  }
+];
 
 /* Function to find the closest firestation to the accident location */
-function findClosestStation(accidentLocation, fireStation = fireStations) {
+function findClosestStation(accidentLocation, fireStation) {
   let closestStation;
   let min = Infinity;
   fireStation.reduce((init, next) => {
