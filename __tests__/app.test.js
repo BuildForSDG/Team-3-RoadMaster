@@ -1,10 +1,5 @@
-import supertest from 'supertest';
 import app from '../src/app';
 import findClosestStation from '../src/javascript/findClosestStation';
-import server from '../server/bin/www';
-
-const request = supertest(server);
-
 
 const fireStations = [
   {
@@ -61,11 +56,5 @@ describe('app module', () => {
     const userLocation = { lat: 6.3445645, lng: 3.4533255 };
     const nearestStation = findClosestStation(userLocation, fireStations);
     expect(...nearestStation).toEqual('Lekki');
-  });
-
-  test('it should load the server', async (done) => {
-    const res = await request.get('/test');
-    expect(res).toBeDefined();
-    done();
   });
 });
