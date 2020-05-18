@@ -5,6 +5,7 @@ $(() => {
     if (this.readyState === 4 && this.status === 200) {
       return (xhr.statusText);
     }
+    return 'still loading';
   };
   const url = 'http://localhost:3001/sos';
   const formdata = new FormData();

@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import app from '../src/app';
-import findClosestStation from '../src/findClosestStation';
+import findClosestStation from '../src/javascript/findClosestStation';
 import server from '../server/bin/www';
 
 const request = supertest(server);
@@ -65,7 +65,6 @@ describe('app module', () => {
 
   test('it should load the server', async (done) => {
     const res = await request.get('/test');
-
     expect(res).toBeDefined();
     done();
   });
