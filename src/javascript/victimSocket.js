@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 $(() => {
   const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = function xhrSend() {
     if (this.readyState === 4 && this.status === 200) {
-      console.log(xhr.statusText);
+      return (xhr.statusText);
     }
   };
-  const url = 'http://localhost:3000/sos';
+  const url = 'http://localhost:3001/sos';
   const formdata = new FormData();
 
   // make connection
@@ -17,13 +17,16 @@ $(() => {
   const display = $('#display');
 
   // onsubmit function to relate with backend api for database purposes
-  function sos() {
+  function sos(accidentLocation, userID) {
     xhr.open('POST', url, true);
-    xhr.send(formdata);
+    formdata.append(accidentLocation);
+    formdata.append(userID);
+    xhr.send();
   }
 
-  function forwardToServer(accidentLocation) {
-    socket.emit('sos', { accidentLocation });
+  function forwardToServer(accidentLocation, userID) {
+    socket.emit('sos', { accidentLocation, userID });
+    sos();
   }
 
   function sendPosition(position) {
@@ -31,12 +34,13 @@ $(() => {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-    forwardToServer(accidentLocation);
+    const userID = 1234;
+    forwardToServer(accidentLocation, userID);
   }
 
   function handleError(err) {
     const error = new Error('Device does not support geolocation');
-    console.error(error.message, err);
+    return (error.message, err);
   }
 
   socket.on('reply', (data) => {
@@ -44,7 +48,7 @@ $(() => {
     display.append(data.message);
   });
 
-  sendSOS.click(() => {
+  sendSOS.click((event) => {
     event.preventDefault();
     // Try HTML5 geolocation
     if (navigator.geolocation) {
