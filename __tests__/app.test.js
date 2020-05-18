@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import app from '../src/app';
 import findClosestStation from '../src/javascript/findClosestStation';
-import server from '../server/bin/www.js';
+import server from '../server/bin/www';
 
 const request = supertest(server);
 
