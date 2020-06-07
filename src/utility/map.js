@@ -12,6 +12,13 @@ function initMap() {
   });
   infoWindow = new google.maps.InfoWindow();
 
+  function handleLocationError(browserHasGeolocation, infoWindows, pos) {
+    infoWindows.setPosition(pos);
+    infoWindows.setContent(browserHasGeolocation
+      ? 'Error: The Geolocation service failed.'
+      : 'Error: Your browser doesn\'t support geolocation.');
+    infoWindows.open(map);
+  }
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -33,10 +40,4 @@ function initMap() {
   }
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation
-    ? 'Error: The Geolocation service failed.'
-    : 'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
-}
+export default initMap;
