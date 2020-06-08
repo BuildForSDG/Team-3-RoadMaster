@@ -19,7 +19,7 @@ const UserLogin = () => {
   };
   const handleSubmission = (e) => {
     e.preventDefault();
-    const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/signin";
+    const url = "https://road-master.herokuapp.com/api/v1/signin";
     if (email === "" || password === "") {
       return;
     }

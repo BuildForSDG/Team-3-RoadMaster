@@ -62,7 +62,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/signup";
+    const url = "https://road-master.herokuapp.com/api/v1/signup";
     const data = {
       name,
       state,

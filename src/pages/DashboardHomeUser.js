@@ -23,7 +23,7 @@ const DashboardHomeUser = () => {
   function sendSOS() {
     // onsubmit function to relate with backend api for database purposes
     function SosPost(accidentLocation, description, userId) {
-      const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/sos";
+      const url = "https://road-master.herokuapp.com/api/v1/sos";
       const data = {
         userId,
         reportType: "SOS",
