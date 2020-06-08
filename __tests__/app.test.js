@@ -1,5 +1,5 @@
 import app from '../src/app';
-import findClosestStation from '../src/findClosestStation';
+import findClosestStation from '../src/javascript/findClosestStation';
 
 const fireStations = [
   {

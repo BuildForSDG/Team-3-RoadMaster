@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`contact page renders contact address 1`] = `
+<div
+  className="col-lg-6"
+>
+  <div
+    className="contact-address"
+  >
+    <h4>
+      Address
+    </h4>
+    <p>
+      Andela - Lagos Office, EPIC tower, 232 Ikorodu RD, Ilupeju, Lagos.
+       
+      <br />
+      <br />
+      <span
+        className="text-info"
+      >
+        You can also reach us on:
+      </span>
+    </p>
+    <ul>
+      <li>
+        <div
+          className="contact-address-icon"
+        >
+          <i
+            className="icofont icofont-headphone-alt"
+          />
+        </div>
+        <div
+          className="contact-address-info"
+        >
+          <a
+            href="callto:#"
+          >
+            +234 8012 435 941
+          </a>
+          <a
+            href="callto:#"
+          >
+            +234 9041 800 937
+          </a>
+        </div>
+      </li>
+      <li>
+        <div
+          className="contact-address-icon"
+        >
+          <i
+            className="icofont icofont-envelope"
+          />
+        </div>
+        <div
+          className="contact-address-info"
+        >
+          <a
+            href="mailto:#"
+          >
+            team-003gmail.com
+          </a>
+        </div>
+      </li>
+      <li>
+        <div
+          className="contact-address-icon"
+        >
+          <i
+            className="fa fa-github"
+          />
+        </div>
+        <div
+          className="contact-address-info"
+        >
+          <a
+            href="#s"
+          >
+            www.github.com/buildforSDG-003.com
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`contact page renders contact map 1`] = `
+<iframe
+  allowFullScreen=""
+  frameBorder="0"
+  height="450"
+  src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d30585.49408227924!2d3.366675750650524!3d6.555627266071869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sandela%20lagos%20map!5e0!3m2!1sen!2sng!4v1588664445446!5m2!1sen!2sng"
+  style={
+    Object {
+      "border": 0,
+      "marginBottom": "-10px",
+    }
+  }
+  title="Andela, Nigeria."
+  width="600"
+/>
+`;
