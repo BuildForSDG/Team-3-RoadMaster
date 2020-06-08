@@ -18,7 +18,7 @@ const Register = () => {
   let [password, setPass] = useState("");
   // let [name, setName] = useState("");
   // const match = useRouteMatch();
-  
+
 
   const changeName = (name) => {
     setName(name);
@@ -62,7 +62,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = "https://covid-19-tos4christ.herokuapp.com/api/v1/on-covid-19/responder";
+    const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/responder";
     const data = {
       nameOfUnit: name,
       designation: desg,
@@ -83,7 +83,7 @@ const Register = () => {
       }
     })
     .then( (res) => res.json())
-    .then( (response) => {     
+    .then( (response) => {
       // This would push to the signin page for the user to now login
       history.push(`/login`);
     })
@@ -219,7 +219,7 @@ const Register = () => {
               linkTo="/login"
             />
             <Button text="Sign Up" />
-          </form>          
+          </form>
         </div>
       </div>
     </div>

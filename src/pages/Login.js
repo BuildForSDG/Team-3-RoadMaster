@@ -19,9 +19,8 @@ const Login = () => {
   };
   const handleSubmission = (e) => {
     e.preventDefault();
-    const url =
-      "https://covid-19-tos4christ.herokuapp.com/api/v1/on-covid-19/responder/signin";
-    if (email === "") {
+    const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/responder/signin";
+    if (email === "" || password === "") {
       return;
     }
     const data = { email, password };

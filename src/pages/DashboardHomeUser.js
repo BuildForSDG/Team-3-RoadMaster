@@ -23,8 +23,7 @@ const DashboardHomeUser = () => {
   function sendSOS() {
     // onsubmit function to relate with backend api for database purposes
     function SosPost(accidentLocation, description, userId) {
-      const url =
-        "https://covid-19-tos4christ.herokuapp.com/api/v1/on-covid-19/sos";
+      const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/sos";
       const data = {
         userId,
         reportType: "SOS",
@@ -84,7 +83,7 @@ const DashboardHomeUser = () => {
         <div class="modal" id="myModal">
           <div class="modal-dialog" >
             <div class="modal-content">
-            
+
               <div class="modal-header">
                 <h4 class="modal-title">Dear user</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -111,7 +110,7 @@ const DashboardHomeUser = () => {
           </form>
         </div>
       </div>
-      <div style={{ height: "80vh" }} className="row">      
+      <div style={{ height: "80vh" }} className="row">
         <button
           type="button"
           className="my-auto"

@@ -19,8 +19,10 @@ const UserLogin = () => {
   };
   const handleSubmission = (e) => {
     e.preventDefault();
-    const url =
-      "https://covid-19-tos4christ.herokuapp.com/api/v1/on-covid-19/signin";
+    const url = "https://road-master.herokuapp.com/api/v1/on-covid-19/signin";
+    if (email === "" || password === "") {
+      return;
+    }
     const data = { email, password };
     fetch(url, {
       method: "POST",
