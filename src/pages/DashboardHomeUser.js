@@ -9,6 +9,7 @@ const DashboardHomeUser = () => {
   let [modalMessage, setModal] = useState("");
   let [imageReport, setImage] = useState("");
   let [imageStyle, setStyle] = useState("hidden");
+  let [description, setDescription] = useState("");
 
   // function to display when the reply gets back
   const reply =  function(data) {
@@ -69,8 +70,48 @@ const DashboardHomeUser = () => {
       handleError(err);
     }
   }
-  function submitReport() {
-
+  function submitReport(e) {
+    e.preventDefault();
+    function reportImage(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const userId = localStorage.getItem("userId");
+      const formData = new FormData();
+      formData.append('description', description);
+      formData.append('image', imageReport);
+      formData.append('lat', lat);
+      formData.append('lon', lon);
+      formData.append('userId', userId);
+      const url = "https://road-master.herokuapp.com/api/v1/report/eyewitness";
+      fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: formData
+      })
+      .then(res => res.json())
+      .then( response => {
+        setImage("");
+        setStyle("hidden");
+        setDescription("");
+      });
+    }
+    // Try HTML5 geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(reportImage, handleError);
+    } else {
+      const err = new Error("Device does not support geolocation");
+      handleError(err);
+    }
+    function handleError(err) {
+      const error = new Error("Device does not support geolocation");
+      console.error(error.message, err);
+    }
+  }
+  function setDesc(e) {
+    setDescription(e.target.value)
   }
   function showImage(e) {
     if(e.target.files[0]) {
@@ -114,18 +155,14 @@ const DashboardHomeUser = () => {
         <div className='col text-center text-success mt-5 pt-5 mb-0 pb-0'>
           <h2> Request for an emergency service below</h2>
           <form className="row" encType="multipart/form-data" name="reports" onSubmit={submitReport}>
-
               <div className="col-6 ml-auto mr-auto pt-3 form-group">
                 <label htmlFor="description">Describe the help you need below or just press button for emergency and help would come</label>
-                <input className="form-control" type="text" id="description" placeholder="Describe your situation"></input>
-
+                <input className="form-control" type="text" id="description" onChange={setDesc} placeholder="Describe the situation"></input>
                 <label> Upload a picture of the scene</label><br/>
                 <input type='file' name='imageReport' onChange={showImage} accept="image/jpg" /><br />
                 <img src={imageReport} style={{display: imageStyle, height: "10vh"}} alt=""/>
                 <button className='button ml-3 mt-3'> Upload your image report </button>
               </div>
-
-
           </form>
         </div>
       </div>
