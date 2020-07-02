@@ -72,13 +72,14 @@ const DashboardHomeUser = () => {
   }
   function submitReport(e) {
     e.preventDefault();
+    e.persist();
     function reportImage(position) {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
       const userId = localStorage.getItem("userId");
       const formData = new FormData();
       formData.append('description', description);
-      formData.append('image', imageReport);
+      formData.append('image', e.target['imageReports'].files[0]);
       formData.append('lat', lat);
       formData.append('lon', lon);
       formData.append('userId', userId);
@@ -86,9 +87,6 @@ const DashboardHomeUser = () => {
       fetch(url, {
         method: "POST",
         mode: "cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
         body: formData
       })
       .then(res => res.json())
@@ -152,16 +150,16 @@ const DashboardHomeUser = () => {
             </div>
           </div>
         </div>
-        <div className='col text-center text-success mt-5 pt-5 mb-0 pb-0'>
+        <div className='col text-center text-success mt-5 pt-5 mb-0 pb-0 imageReports'>
           <h2> Request for an emergency service below</h2>
           <form className="row" encType="multipart/form-data" name="reports" onSubmit={submitReport}>
               <div className="col-6 ml-auto mr-auto pt-3 form-group">
                 <label htmlFor="description">Describe the help you need below or just press button for emergency and help would come</label>
                 <input className="form-control" type="text" id="description" onChange={setDesc} placeholder="Describe the situation"></input>
                 <label> Upload a picture of the scene</label><br/>
-                <input type='file' name='imageReport' onChange={showImage} accept="image/jpg" /><br />
+                <input type='file' name='imageReports' onChange={showImage} accept="image/jpg" /><br />
                 <img src={imageReport} style={{display: imageStyle, height: "10vh"}} alt=""/>
-                <button className='button ml-3 mt-3'> Upload your image report </button>
+                <button className='button ml-3 mt-3' type='submit'> Upload your image report </button>
               </div>
           </form>
         </div>
