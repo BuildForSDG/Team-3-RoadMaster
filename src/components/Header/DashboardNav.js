@@ -25,6 +25,7 @@ const DashboardNav = ({ body }) => {
   // function to display when the reply gets back
   const sosAlert =  function(data) {
     const { user, accidentLocation } = data;
+    console.log(user, accidentLocation);
     const loc = `lat: ${accidentLocation.lat} , lon: ${accidentLocation.lon}`;
     setLocation(loc);
     setBloodType(user.bloodType);
@@ -73,7 +74,7 @@ const DashboardNav = ({ body }) => {
       </button>
       <div class="modal" id="myModal">
         <div class="modal-dialog">
-          <div class="modal-content">          
+          <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Dear Responder</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
