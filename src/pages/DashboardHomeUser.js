@@ -84,10 +84,10 @@ const DashboardHomeUser = () => {
       formData.append('userId', userId);
       const url = "https://road-master.herokuapp.com/api/v1/report/eyewitness";
       fetch(url, {
-        method: 'POST',
-        mode: 'cors',
+        method: "POST",
+        mode: "cors",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         },
         body: formData
       })
