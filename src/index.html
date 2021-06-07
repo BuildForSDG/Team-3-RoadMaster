@@ -7,9 +7,214 @@
 </head>
 <body>
 
-    <h2 data-app-name></h2>
+    <h2 data-app-name>Road Master</h2>
 
     <script src="./index.js"></script>
-    
+
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Register
+            </button>
+            <a routerLink="/login" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+  <script>  import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+import { AuthenticationService } from '../_services'
+
+@Component({ templateUrl: 'login.component.html' })
+export class {
+    loginForm: formGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+    error: string;
+    success: string
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) {
+        // redirect to home if already logged in
+        if (this.authenticationService.currentUserValue) {
+            this.router.navigate(['/']);
+        }
+    }
+
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+        // show success message on registration
+        if (this.route.snapshot.queryParams['registered']) {
+            this.success = 'Registration successful';
+        }
+    }
+
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+
+        // reset alerts on submit
+        this.error = null;
+        this.success = null;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+    }
+}
+<div *ngIf;"error" ;{"alert alert-danger">{{error}}</div>
+<div *ngIf;"success" ;{"alert alert-success">{{success}}</div>
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+        </button>
+        <a routerLink="/register" class="btn btn-link">Register</a>
+    </div>
+</form>
+</script>
+  <dl>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html#onBind(Intent)">onBind(Intent)</a></span> - Method in class com.example.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html" title="class in "com.sos.sos_app_layout">LocationService</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html#onCreate()">onCreate()</a></span> - Method in class com.example.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html" title="class in "com.sos.sos_app_layout">LocationService</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html#onDestroy()">onDestroy()</a></span> - Method in class com.example.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html" title="class in "com.sos.sos_app_layout">LocationService</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html#onLocationChanged(Location)">onLocationChanged(Location)</a></span> - Method in class com.example.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html" title="class in "com.sos.sos_app_layout">LocationService.MyLocationListener</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html#onProviderDisabled(java.lang.String)">onProviderDisabled(String)</a></span> - Method in class com.example.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html" title="class in "com.sos.sos_app_layout">LocationService.MyLocationListener</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html#onProviderEnabled(java.lang.String)">onProviderEnabled(String)</a></span> - Method in class com.example.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html" title="class in "com.sos.sos_app_layout">LocationService.MyLocationListener</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.html#onStart(Intent, int)">onStart(Intent, int)</a></span> - Method in class com.example.sos_app_layout.<a href="../com/example/sos_app_layout/LocationService.html" title="class in com.sos.sos_app_layout">LocationService</a></dt>
+<dd>&nbsp;</dd>
+  <dt><span class="strong"><a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html#onStatusChanged(java.lang.String, int, Bundle)">onStatusChanged(String, int, Bundle)</a></span> - Method in class com.sos.sos_app_layout.<a href="com.sos.library.LocationPollerService/sos_app_layout/LocationService.MyLocationListener.html" title="class in "com.sos.sos_app_layout">LocationService.MyLocationListener</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<input
+  type="file"
+  #file
+  style="display: none"
+  (change)="onFilesAdded()"
+  multiple
+/>
+<div class="container" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+  <h1 mat-dialog-title>Upload Files</h1>
+  <div>
+    <button
+      [disabled]="uploading || uploadSuccessful"
+      mat-raised-button
+      color="primary"
+      class="add-files-btn"
+      (click)="addFiles()"
+    >
+      Add Files
+    </button>
+  </div>
+
+  <!-- This is the content of the dialog, containing a list of the files to upload -->
+  <mat-dialog-content fxFlex>
+    <mat-list>
+      <mat-list-item *ngFor="let file of files">
+        <h4 mat-line>{{file.name}}</h4>
+        <mat-progress-bar
+          *ngIf="progress"
+          mode="determinate"
+          [value]="progress[file.name].progress | async"
+        ></mat-progress-bar>
+      </mat-list-item>
+    </mat-list>
+  </mat-dialog-content>
+
+  <!-- This are the actions of the dialog, containing the primary and the cancel button-->
+  <mat-dialog-actions class="actions">
+    <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!canBeClosed"
+      (click)="closeDialog()"
+    >
+      {{primaryButtonText}}
+    </button>
+  </mat-dialog-actions>
+</div>
+
 </body>
 </html>
