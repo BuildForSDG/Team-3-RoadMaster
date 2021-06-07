@@ -6,11 +6,8 @@ barebones setup for JavaScript / Node projects replace this with a one-liner phr
 
 ## About
 
-What is this project about. Ok to enrich here or the section above it with an image. 
-
-Once this repo has been setup on Codacy by the TTL, replace the above badge with the actual one from the Codacy dashboard, and add the code coverage badge as well. This is mandatory
-
-This is a simple JavaScript starter repo template for setting up your project. The setup contains
+This project is about the Andela Build for SDG contest, our app focus on the problem statement that aims to reduce road accident, we achieve this in this app
+by making its users send an emergency signal to relevant road safety officials anytime an accident occurs, this information over time is analyzed and makes proper investigation possible based on a location where accident occurs frequently so that a closer look would make the authority know what causes accident and mitigate it rather treating every road accident as a random occurence, the pattern can now be discovered
 
 - Jest: For runnung tests. We strongly recommend that JavaScript projects use Jest
 
