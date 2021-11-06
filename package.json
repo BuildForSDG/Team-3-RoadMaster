@@ -2,10 +2,7 @@
   "name": "road-master",
   "version": "0.0.1",
   "description": "road master web app",
-  "keywords": [
-    "road master",
-    "Nigeria"
-  ],
+  "keywords": ["road master", "Nigeria"],
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -66,15 +63,11 @@
     "react-test-renderer": "^16.13.1"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
+  "engines": {
+    "npm": ">=6.0.0",
+    "node": ">=10.0.0"
   }
 }
